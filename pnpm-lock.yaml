@@ -8,12 +8,18 @@ dependencies:
   '@unocss/reset':
     specifier: ^0.56.5
     version: 0.56.5
+  js-confetti:
+    specifier: 0.12.0
+    version: 0.12.0
   react:
     specifier: ^18.2.0
     version: 18.2.0
   react-dom:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
+  sonner:
+    specifier: ^1.2.4
+    version: 1.2.4(react-dom@18.2.0)(react@18.2.0)
 
 devDependencies:
   '@types/react':
@@ -1991,6 +1997,10 @@ packages:
     hasBin: true
     dev: true
 
+  /js-confetti@0.12.0:
+    resolution: {integrity: sha512-1R0Akxn3Zn82pMqW65N1V2NwKkZJ75bvBN/VAb36Ya0YHwbaSiAJZVRr/19HBxH/O8x2x01UFAbYI18VqlDN6g==}
+    dev: false
+
   /js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
 
@@ -2523,6 +2533,16 @@ packages:
       mrmime: 1.0.1
       totalist: 3.0.1
     dev: true
+
+  /sonner@1.2.4(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-WGLP2QQnomgewaCTsK7YWiLcy5n1Yj83vsL5cP4zHMmpSkmFsCYTpQKhlXJrPE5kzjwbqCkCFXcOpbKc4vaUaA==}
+    peerDependencies:
+      react: ^18.0.0
+      react-dom: ^18.0.0
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
 
   /source-map-js@1.0.2:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}

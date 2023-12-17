@@ -13,10 +13,9 @@ export const Card = (props: Props) => {
         {props.numbers.map(number => (
           <div
             key={number.number}
-            className={`p-2 ${number.isMarked && 'bg-red-500'} `}
+            className={`p-2 ${number.isMarked && 'bg-red-500'} text-center`}
           >
             {number.number}
-            <p>{String(number.isMarked)}</p>
           </div>
         ))}
       </article>
