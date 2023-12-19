@@ -20,9 +20,16 @@ function App () {
   const hasPlayerWon = cardPlayer.numbers.every(
     currentValue => currentValue.isMarked
   )
-
   const hasCPUWon = cardCPU.numbers.every(currentValue => currentValue.isMarked)
   const isGameOver = hasPlayerWon || hasCPUWon
+
+  const hasPlayerLined = cardPlayer.numbers.every(
+    currentValue => currentValue.isMarked
+  )
+  const hasCPULined = cardCPU.numbers.every(
+    currentValue => currentValue.isMarked
+  )
+  const isLineDone = hasPlayerLined || hasCPULined
 
   const jsConfetti = new JSConfetti()
 
@@ -36,14 +43,24 @@ function App () {
       handleJsConfetti(['🐹', '🐭'])
     }
     if (hasCPUWon) {
-      handleJsConfetti(['🎉', '🎊'])
+      handleJsConfetti(['💩', '💻'])
     }
   }, [hasPlayerWon, hasCPUWon])
 
+  useEffect(() => {
+    if (hasPlayerLined) {
+      handleJsConfetti(['🐹'])
+    }
+    if (hasCPULined) {
+      handleJsConfetti(['💩'])
+    }
+  }, [hasPlayerLined, hasCPULined])
+
   return (
     <div className='w-screen h-screen flex flex-col gap-y-8 justify-center items-center bg-gradient-to-b from-customBgLight to-customBgDark'>
-      <div className='flex max-w-6xl mx-auto gap-x-16'>
+      <div className='flex flex-col md:flex-row justify-around items-center max-w-4xl w-full mx-auto px-8'>
         <Card playerName={cardPlayer.playerName} numbers={cardPlayer.numbers} />
+
         <NumberGenerator
           dealtNumbers={dealtNumbers}
           setDealtNumbers={setDealtNumbers}
@@ -64,7 +81,7 @@ function App () {
           Resetear partida
         </button>
       )}
-      <div className='max-w-xl w-full mx-auto bg-green-500'>
+      <div className='max-w-4xl px-8 w-full mx-auto'>
         <DealtNumbers dealtNumbers={dealtNumbers} />
       </div>
     </div>

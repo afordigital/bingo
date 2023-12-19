@@ -4,23 +4,22 @@ type Props = {
 
 export const DealtNumbers = (props: Props) => {
   return (
-    <div className='w-full'>
-      {props.dealtNumbers.length > 0 && (
-        <div
-          style={{
-            display: 'grid',
-            gap: '4px',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(2rem, 1fr))'
-          }}
-          className='border-2 min-w-[800px] w-full border-customWhite p-4'
-        >
-          {props.dealtNumbers.map(number => (
-            <p key={number} className='bg-customWhite p-2'>
-              {number}
-            </p>
-          ))}
-        </div>
-      )}
+    <div className='w-full border-2 border-customWhite min-h-[210px] p-4'>
+      <div
+        style={{
+          display: 'grid',
+          gap: '4px',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(2rem, 1fr))',
+          alignItems: 'start'
+        }}
+        className='items-start w-full'
+      >
+        {props.dealtNumbers.map(number => (
+          <p key={number} className='bg-customWhite h-fit p-2'>
+            {number}
+          </p>
+        ))}
+      </div>
     </div>
   )
 }

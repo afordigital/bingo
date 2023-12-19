@@ -7,7 +7,7 @@ type Props = {
 
 export const Card = (props: Props) => {
   return (
-    <section className='bg-customRed px-2 border-2 border-customBrown drop-shadow-sm'>
+    <section className='bg-customRed px-2 pb-2 border-2 border-customBrown drop-shadow-sm'>
       <p className='text-center p-2 uppercase text-customWhite text-xl font-semibold'>
         {props.playerName}
       </p>
