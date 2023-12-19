@@ -5,6 +5,7 @@ import { NumberGenerator } from './components/NumberGenerator'
 import { getNumbers } from './utils/getNumbers'
 import { DealtNumbers } from './components/DealtNumbers'
 import { resetGame } from './utils/resetGame'
+import { LineProps } from './types/types'
 
 function App () {
   const [dealtNumbers, setDealtNumbers] = useState<number[]>([])
@@ -23,13 +24,26 @@ function App () {
   const hasCPUWon = cardCPU.numbers.every(currentValue => currentValue.isMarked)
   const isGameOver = hasPlayerWon || hasCPUWon
 
-  const hasPlayerLined = cardPlayer.numbers.every(
-    currentValue => currentValue.isMarked
-  )
-  const hasCPULined = cardCPU.numbers.every(
-    currentValue => currentValue.isMarked
-  )
-  const isLineDone = hasPlayerLined || hasCPULined
+  const hasPlayerLined =
+    cardPlayer.numbers
+      .slice(0, 5)
+      .every(currentValue => currentValue.isMarked) ||
+    cardPlayer.numbers
+      .slice(5, 10)
+      .every(currentValue => currentValue.isMarked) ||
+    cardPlayer.numbers
+      .slice(10, 15)
+      .every(currentValue => currentValue.isMarked)
+
+  const hasCPULined =
+    cardCPU.numbers.slice(0, 5).every(currentValue => currentValue.isMarked) ||
+    cardCPU.numbers.slice(6, 10).every(currentValue => currentValue.isMarked) ||
+    cardCPU.numbers.slice(11, 15).every(currentValue => currentValue.isMarked)
+
+  const [isLineDone, setIsLineDone] = useState<LineProps>({
+    lineDone: hasPlayerLined || hasCPULined,
+    winner: ''
+  })
 
   const jsConfetti = new JSConfetti()
 
@@ -48,13 +62,19 @@ function App () {
   }, [hasPlayerWon, hasCPUWon])
 
   useEffect(() => {
-    if (hasPlayerLined) {
+    if (hasPlayerLined && !isLineDone.lineDone) {
       handleJsConfetti(['🐹'])
     }
-    if (hasCPULined) {
+    if (hasCPULined && !isLineDone.lineDone) {
       handleJsConfetti(['💩'])
     }
-  }, [hasPlayerLined, hasCPULined])
+    if (hasPlayerLined || hasCPULined) {
+      setIsLineDone({
+        lineDone: true,
+        winner: hasPlayerLined ? 'Player' : 'CPU'
+      })
+    }
+  }, [isLineDone, hasPlayerLined, hasCPULined])
 
   return (
     <div className='w-screen h-screen flex flex-col gap-y-8 justify-center items-center bg-gradient-to-b from-customBgLight to-customBgDark'>
@@ -75,7 +95,12 @@ function App () {
       {isGameOver && (
         <button
           onClick={() => {
-            resetGame({ setCardPlayer, setCardCPU, setDealtNumbers })
+            resetGame({
+              setCardPlayer,
+              setCardCPU,
+              setDealtNumbers,
+              setIsLineDone
+            })
           }}
         >
           Resetear partida
@@ -84,6 +109,11 @@ function App () {
       <div className='max-w-4xl px-8 w-full mx-auto'>
         <DealtNumbers dealtNumbers={dealtNumbers} />
       </div>
+      {isLineDone.lineDone && (
+        <p className='font-bold text-customWhite text-xl'>
+          Línea: {isLineDone.winner}
+        </p>
+      )}
     </div>
   )
 }

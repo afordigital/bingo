@@ -17,3 +17,8 @@ export interface NumberGeneratorProps {
   setCardCPU: (cardCPU: cardType) => void
   isGameOver: boolean
 }
+
+export interface LineProps {
+  lineDone: boolean
+  winner: string
+}

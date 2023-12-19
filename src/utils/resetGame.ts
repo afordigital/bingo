@@ -1,10 +1,11 @@
 import { getNumbers } from './getNumbers'
-import { cardType } from '../types/types'
+import { cardType, LineProps } from '../types/types'
 
 type Props = {
   setCardPlayer: (cardType: cardType) => void
   setCardCPU: (cardType: cardType) => void
   setDealtNumbers: (dealtNumbers: number[]) => void
+  setIsLineDone: (isLineDone: LineProps) => void
 }
 
 export const resetGame = (props: Props) => {
@@ -17,4 +18,5 @@ export const resetGame = (props: Props) => {
     numbers: getNumbers()
   })
   props.setDealtNumbers([])
+  props.setIsLineDone({ lineDone: false, winner: '' })
 }
