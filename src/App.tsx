@@ -9,7 +9,7 @@ import { resetGame } from './utils/resetGame'
 function App () {
   const [dealtNumbers, setDealtNumbers] = useState<number[]>([])
   const [cardPlayer, setCardPlayer] = useState({
-    playerName: 'Player 1',
+    playerName: 'Player',
     numbers: getNumbers()
   })
   const [cardCPU, setCardCPU] = useState({
@@ -42,7 +42,7 @@ function App () {
 
   return (
     <div className='w-screen h-screen flex flex-col gap-y-8 justify-center items-center bg-gradient-to-b from-customBgLight to-customBgDark'>
-      <div className='flex max-w-5xl mx-auto'>
+      <div className='flex max-w-6xl mx-auto gap-x-16'>
         <Card playerName={cardPlayer.playerName} numbers={cardPlayer.numbers} />
         <NumberGenerator
           dealtNumbers={dealtNumbers}
@@ -64,7 +64,7 @@ function App () {
           Resetear partida
         </button>
       )}
-      <div className='max-w-5xl mx-auto'>
+      <div className='max-w-xl w-full mx-auto bg-green-500'>
         <DealtNumbers dealtNumbers={dealtNumbers} />
       </div>
     </div>

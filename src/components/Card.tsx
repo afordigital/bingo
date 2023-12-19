@@ -7,13 +7,19 @@ type Props = {
 
 export const Card = (props: Props) => {
   return (
-    <section className='bg-customWhite'>
-      <p className='text-center'>{props.playerName}</p>
+    <section className='bg-customRed px-2 border-2 border-customBrown drop-shadow-sm'>
+      <p className='text-center p-2 uppercase text-customWhite text-xl font-semibold'>
+        {props.playerName}
+      </p>
       <article className='grid grid-cols-5 gap-2'>
         {props.numbers.map(number => (
           <div
             key={number.number}
-            className={`p-2 ${number.isMarked && 'bg-red-500'} text-center`}
+            className={`py-2 px-3 ${
+              number.isMarked
+                ? 'bg-customRed text-customBrown font-bold line-through'
+                : 'bg-customWhite'
+            } text-center font-semibold`}
           >
             {number.number}
           </div>
