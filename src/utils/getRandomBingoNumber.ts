@@ -3,7 +3,7 @@ type Props = {
 }
 
 export const getRandomBingoNumber = (props: Props): number => {
-  let number = Math.floor(Math.random() * 90)
+  let number = Math.ceil(Math.random() * 90)
   if (props.array.includes(number)) {
     return getRandomBingoNumber(props)
   }
